@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:quill_html_editor/src/widgets/webviewx/src/controller/interface.dart'
+import 'package:html_simple_editor/src/widgets/webviewx/src/controller/interface.dart'
     as ctrl_interface;
-import 'package:quill_html_editor/src/widgets/webviewx/src/utils/utils.dart';
-import 'package:quill_html_editor/src/widgets/webviewx/src/view/interface.dart'
+import 'package:html_simple_editor/src/widgets/webviewx/src/utils/utils.dart';
+import 'package:html_simple_editor/src/widgets/webviewx/src/view/interface.dart'
     as view_interface;
 
 /// Facade class

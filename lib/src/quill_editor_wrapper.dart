@@ -5,11 +5,11 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:quill_html_editor/quill_html_editor.dart';
-import 'package:quill_html_editor/src/utils/hex_color.dart';
-import 'package:quill_html_editor/src/utils/string_util.dart';
-import 'package:quill_html_editor/src/widgets/edit_table_drop_down.dart';
-import 'package:quill_html_editor/src/widgets/webviewx/src/webviewx_plus.dart';
+import 'package:html_simple_editor/quill_html_editor.dart';
+import 'package:html_simple_editor/src/utils/hex_color.dart';
+import 'package:html_simple_editor/src/utils/string_util.dart';
+import 'package:html_simple_editor/src/widgets/edit_table_drop_down.dart';
+import 'package:html_simple_editor/src/widgets/webviewx/src/webviewx_plus.dart';
 
 /// A typedef representing a loading builder function.
 ///
@@ -55,6 +55,7 @@ class QuillHtmlEditor extends StatefulWidget {
       color: Colors.black87,
       fontWeight: FontWeight.normal,
     ),
+    this.onPaste,
   }) : super(key: controller._editorKey);
 
   /// [text] to set initial text to the editor, please use text
@@ -152,6 +153,10 @@ class QuillHtmlEditor extends StatefulWidget {
   /// The default value is `false`
   /// **Note** due to limitations of flutter webview at the moment, focus doesn't launch the keyboard in mobile, however, it will set the cursor at the end on focus.
   final bool? autoFocus;
+
+  /// This Callback executes when detects a user paste event inside the editor
+  /// box.
+  final VoidCallback? onPaste;
 
   @override
   QuillHtmlEditorState createState() => QuillHtmlEditorState();
@@ -405,6 +410,14 @@ class QuillHtmlEditorState extends State<QuillHtmlEditor> {
                     setState(() {});
                   }
                 }),
+
+            // Customization - Paste Event
+            DartCallback(
+              name: 'PasteEvent',
+              callBack: (_) {
+                if (widget.onPaste != null) widget.onPaste!();
+              }
+            ),
           },
           webSpecificParams: const WebSpecificParams(
             printDebugInfo: false,
@@ -776,6 +789,11 @@ class QuillHtmlEditorState extends State<QuillHtmlEditor> {
             }
             // Retrieve the Quill editor container element by its ID
             var quillContainer = document.getElementById('scrolling-container');
+
+            // Customization - Paste Listener
+            quillContainer.addEventListener('paste', function() {
+              PasteEvent();
+            });
             
             // Add the focusout event listener to the Quill editor container
             quillContainer.addEventListener('focusout', function() {
@@ -1280,6 +1298,11 @@ class QuillHtmlEditorState extends State<QuillHtmlEditor> {
         </body>
         </html>
        ''';
+  }
+
+  ///
+  void _clearPastedText() {
+    
   }
 }
 

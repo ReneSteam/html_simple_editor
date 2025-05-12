@@ -4,9 +4,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:quill_html_editor/src/widgets/webviewx/src/controller/controller.dart'
+import 'package:html_simple_editor/src/widgets/webviewx/src/controller/controller.dart'
     as i;
-import 'package:quill_html_editor/src/widgets/webviewx/src/utils/utils.dart';
+import 'package:html_simple_editor/src/widgets/webviewx/src/utils/utils.dart';
 import 'package:webview_flutter/webview_flutter.dart' as wf;
 
 /// Mobile implementation

@@ -1,5 +1,5 @@
-import 'package:quill_html_editor/src/widgets/webviewx/src/controller/interface.dart';
-import 'package:quill_html_editor/src/widgets/webviewx/src/utils/utils.dart';
+import 'package:html_simple_editor/src/widgets/webviewx/src/controller/interface.dart';
+import 'package:html_simple_editor/src/widgets/webviewx/src/utils/utils.dart';
 
 /// Interface for widget
 abstract class WebViewX {
